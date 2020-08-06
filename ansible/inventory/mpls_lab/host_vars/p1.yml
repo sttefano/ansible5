@@ -1,0 +1,38 @@
+---
+mpls:
+ protocol: "ldp"
+ interfaces:
+  - { interface: 'GigabitEthernet0/0/0/0' }
+  - { interface: 'GigabitEthernet0/0/0/1' }
+
+loopback:
+ - { interface: 'loopback0', ip_address: '10.208.0.1/25' }
+
+layer3_interfaces:
+ - { interface: 'GigabitEthernet0/0/0/0', ip_address: '10.0.10.9/30' }
+ - { interface: 'GigabitEthernet0/0/0/1', ip_address: '10.0.10.5/30' }
+
+route_reflector:
+ as: "65000"
+ router_id: "10.0.10.9"
+ neighbours:
+  - { peer_ip: '10.0.10.10', remote_as: '65000' }
+  - { peer_ip: '10.0.10.6', remote_as: '65000' }
+
+isis:
+ instance_id: "isp"
+ type: "level-1"
+ nsap:
+  - { area: '49.0001', system_id: '0100.0000.0003', nsel: '00'  }
+ interfaces:
+  - { port1: 'GigabitEthernet0/0/0/0', port2: 'GigabitEthernet0/0/0/1' }
+
+
+    #bgp:
+    #as: "65000"
+    #router_id: "10.0.10.9"
+    #neighbours:
+    #- { peer_ip: '10.0.10.10', remote_as: '65000' }
+    #- { peer_ip: '10.0.10.6', remote_as: '65000' }
+
+

@@ -1,0 +1,12 @@
+!
+{% if layer3_interfaces is defined %}
+{% for layer3_interface in layer3_interfaces %}
+interface {{ layer3_interface.interface }}
+ cdp
+ ipv4 address {{ layer3_interface.ip_address | ipaddr('address') }} {{ layer3_interface.ip_address | ipaddr('netmask') }}
+ no shutdown
+!
+{% endfor %}
+{% endif %}
+!
+

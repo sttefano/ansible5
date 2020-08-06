@@ -1,0 +1,15 @@
+---
+ - name: Obtain IP for Docker Container
+   command: "docker inspect --format '{''{ .NetworkSettings.IPAddress }''}' {{ inventory_hostname }}"
+   register: docker_container_ip
+   changed_when: false
+
+ - name: Set Docker IP as a fact
+   set_fact:
+     ansible_host: "{{ docker_container_ip.stdout }}"
+
+ - name: Print Docker IPs to screen
+   debug:
+     msg:
+      - "{{ inventory_hostname }} - {{ docker_container_ip.stdout }}"
+

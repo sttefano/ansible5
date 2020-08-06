@@ -1,0 +1,21 @@
+--- 
+ - name: Remove
+   hosts: all
+   gather_facts: no
+   connection: local
+
+   tasks: 
+
+    - name: docker remove routers containers
+      docker_container:
+        name: "{{ inventory_hostname }}"
+        state: absent
+        detach: true
+
+    - name: docker remove bridges containers
+      docker_container:
+        name: "peer-2-peer"
+        state: absent
+        detach: true
+      
+

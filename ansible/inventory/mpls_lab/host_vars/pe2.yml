@@ -1,0 +1,45 @@
+---
+mpls:
+ protocol: "ldp"
+ interfaces:
+  - { interface: 'GigabitEthernet0/0/0/0' }
+  - { interface: 'GigabitEthernet0/0/0/1' }
+
+loopback:
+ - { interface: 'loopback0', ip_address: '10.208.0.4/32' }
+   
+layer3_interfaces:
+ - { interface: 'GigabitEthernet0/0/0/0', ip_address: '10.0.10.6/30' }
+ - { interface: 'GigabitEthernet0/0/0/1', ip_address: '10.0.10.18/30' }
+ - { interface: 'GigabitEthernet0/0/0/2', ip_address: '10.2.0.1/30' }
+
+vrf:
+ routes:
+   - { name: 'cliente_a', import_route: '65100:1', export_route: '65100:2' }
+   - { name: 'cliente_b', import_route: '65200:1', export_route: '65200:2' }
+
+mpbgp:
+ as: "65000"
+ router_id: "10.0.10.6"
+ vrf:
+  - { name: 'cliente_a', rd: '65100:2' }
+  - { name: 'cliente_b', rd: '65200:2' }
+ neighbours:
+  - { peer_ip: '10.0.10.5', remote_as: '65000' }
+  - { peer_ip: '10.0.10.17', remote_as: '65000' }
+  - { peer_ip: '10.2.0.2', remote_as: '65200' }
+     
+vrf_route_static:
+ vrf:
+  - { name: 'cliente_b' }
+ routes:
+  - { network: '10.100.2.0/24', nexthop: '10.2.0.2' }
+
+isis:
+ instance_id: "isp"
+ type: "level-1"
+ nsap:
+  - { area: '49.0001', system_id: '0100.0000.0002', nsel: '00'  }
+ interfaces:
+  - { port1: 'GigabitEthernet0/0/0/0', port2: 'GigabitEthernet0/0/0/1' }
+  

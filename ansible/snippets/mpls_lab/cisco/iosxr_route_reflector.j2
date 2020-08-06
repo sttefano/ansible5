@@ -1,0 +1,14 @@
+!
+{% if route_reflector is defined %}
+router bgp {{ route_reflector.as }}
+ bgp router-id {{ route_reflector.router_id }}
+{% for bgp_neighbour in route_reflector.neighbours %}
+ neighbor {{ bgp_neighbour.peer_ip }} 
+  remote-as {{ bgp_neighbour.remote_as }}
+  update-source loopback0 
+  address-family vpnv4 unicast
+   route-reflector-client
+!
+{% endfor %}
+{% endif %}
+!

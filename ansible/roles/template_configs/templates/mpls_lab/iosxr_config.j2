@@ -1,0 +1,27 @@
+{% set common = "snippets/common/cisco" %}
+{% set lab_snippets = "snippets/"+lab_id+"/cisco" %}
+!
+{% include common+'/iosxr_hostname.j2' %}
+!
+{% include lab_snippets+'/iosxr_vrf.j2' %}
+!
+{% include lab_snippets+'/iosxr_loopback_interfaces.j2' %}
+!
+{% include lab_snippets+'/iosxr_layer3_interfaces.j2' %}
+!
+{% include lab_snippets+'/iosxr_default_routes.j2' %}
+!
+{% include lab_snippets+'/iosxr_bgp.j2' %}
+!
+{% include lab_snippets+'/iosxr_mp-bgp.j2' %}
+!
+{% include lab_snippets+'/iosxr_route_reflector.j2' %}
+!
+{% include lab_snippets+'/iosxr_mpls_ldp.j2' %}
+!
+{% include lab_snippets+'/iosxr_vrf_static_routes.j2' %}
+!
+{% include lab_snippets+'/iosxr_isis.j2' %}
+!
+
+

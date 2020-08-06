@@ -1,0 +1,19 @@
+---
+loopback:
+ - { interface: 'loopback0', ip_address: '10.209.1.1/32' }
+ - { interface: 'loopback10', ip_address: '10.100.1.1/32' }
+
+layer3_interfaces:
+ - { interface: 'GigabitEthernet0/0/0/0', ip_address: '10.1.0.2/30' }
+   
+bgp:
+ as: "65100"
+ router_id: "10.1.0.2"
+ neighbours:
+  - { peer_ip: '10.1.0.1', remote_as: '65000' }
+
+default_route:
+ route: "0.0.0.0 0.0.0.0"
+ nexthop:
+  - { ip_address: '10.1.0.1' }
+

@@ -1,0 +1,22 @@
+!
+{% if mpbgp is defined %}
+router bgp {{ mpbgp.as }}
+ bgp router-id {{ mpbgp.router_id }}
+ address-family vpnv4 unicast
+{% for bgp_vrf in mpbgp.vrf %}
+ vrf {{ bgp_vrf.name }}
+   rd {{ bgp_vrf.rd }}
+   address-family ipv4 unicast
+!
+{% endfor %}
+{% for bgp_neighbour in mpbgp.neighbours %}
+ neighbor {{ bgp_neighbour.peer_ip }}
+  remote-as {{ bgp_neighbour.remote_as }}
+  update-source loopback0
+  address-family vpnv4 unicast
+!
+{% endfor %}
+{% endif %}
+!
+
+

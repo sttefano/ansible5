@@ -1,0 +1,12 @@
+!
+{% if default_route is defined %}
+route static
+ address-family ipv4 unicast
+ {% for nexthop in default_route.nexthop %}
+ {{ default_route.route }} {{ nexthop.ip_address }}
+!
+{% endfor %}
+{% endif %}
+!
+
+

@@ -1,0 +1,11 @@
+!
+{% if loopback is defined %}
+{% for loopback in loopback %}
+interface {{ loopback.interface }}
+ ipv4 address {{ loopback.ip_address | ipaddr('address') }} {{ loopback.ip_address | ipaddr('netmask') }}
+ no shutdown
+!
+{% endfor %}
+{% endif %}
+!
+

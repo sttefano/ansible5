@@ -1,0 +1,22 @@
+!
+{% if isis is defined %}
+router isis {{ isis.instance_id }}
+ is-type {{ isis.type }}
+{% for isis_nsap in isis.nsap %}
+ net {{ isis_nsap.area }}.{{ isis_nsap.system_id }}.{{ isis_nsap.nsel }} 
+ address-family ipv4 unicast
+ !
+{% endfor %}
+ {% for interface in isis.interfaces %}
+ interface {{ interface.port1 }} 
+  address-family ipv4 unicast
+  !
+ interface {{ interface.port2 }}
+  address-family ipv4 unicast
+  !
+ ! 
+{% endfor %}
+{% endif %}
+!
+
+

@@ -1,0 +1,9 @@
+!
+{% if mpls is defined %}
+mpls {{ mpls.protocol }}
+{% for interface in mpls.interfaces %}
+ interface {{ interface.interface }} 
+{% endfor %}
+{% endif %}
+!
+

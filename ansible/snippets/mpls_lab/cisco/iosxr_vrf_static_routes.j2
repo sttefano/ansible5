@@ -1,0 +1,13 @@
+!
+{% if vrf_route_static is defined %}
+router static
+{% for route_name in vrf_route_static.vrf %}
+ vrf {{ route_name.name }}
+  address-family ipv4 unicast {% for route_static in vrf_route_static.routes %} 
+    {{ route_static.network | ipaddr('network') }} {{ route_static.network | ipaddr('netmask') }} {{ route_static.nexthop }}
+{% endfor %}
+  !
+{% endfor %}
+{% endif %}
+
+

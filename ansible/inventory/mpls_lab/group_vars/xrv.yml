@@ -1,0 +1,4 @@
+---
+platform: "xrv"
+version: "6.1.2"
+docker_image: "vrnetlab/vr-{{ platform }}:{{ version }}"

@@ -1,0 +1,11 @@
+!
+{% if vrf is defined %}
+{% for vrf_list in vrf.routes %}
+ vrf {{ vrf_list.name }}
+  address-family ipv4 unicast
+  import route-target {{ vrf_list.import_route }}
+  export route-target {{ vrf_list.export_route }}
+!
+{% endfor %}
+{% endif %} 
+! 

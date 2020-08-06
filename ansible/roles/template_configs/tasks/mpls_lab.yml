@@ -1,0 +1,12 @@
+---
+ - name: Template Configs - Cisco-xrv
+   template:
+     src: "{{ lab_id }}/iosxr_config.j2"
+     dest: "{{ output_dir }}/{{ inventory_hostname }}.cfg"
+   when: ansible_network_os == 'iosxr'
+
+   ## - name: Template Configs - xxxx
+   ##template:
+   ##  src: "{{ lab_id }}/xxxx_config.j2"
+   ##  dest: "{{ output_dir }}/{{ inventory_hostname }}.cfg"
+   ##when: ansible_network_os == 'xxxx'

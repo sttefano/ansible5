@@ -1,0 +1,7 @@
+---
+ - name: Create Output Directory
+   file: path=\"{{ output_dir }}\" state=directory
+   run_once: true
+
+ - name: Include tasks for lab
+   include: "{{ lab_id }}.yml"
