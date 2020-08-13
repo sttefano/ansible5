@@ -1,0 +1,21 @@
+---
+
+ - name: Push git commits with local variables.
+   hosts: localhost
+   vars:
+   username: maxisttefano
+   password: Pr0yect00rt
+
+   tasks:
+    
+    - name: git add .
+      shell: "sudo git add ."
+
+    - name: git commit
+      shell: git commit -a -m "'proyecto'"
+
+    - name: Set origin to include username and password.
+      shell: "git remote set-url origin git@gitlab.proyecto.com:root/ansible.git"
+
+    - name: Push to origin.
+      shell: "git push origin master"

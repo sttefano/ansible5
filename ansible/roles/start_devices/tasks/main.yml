@@ -17,7 +17,6 @@
      xcon_p2p: "--p2p {% for p2p in xcon.p2p %}{{  p2p.a_device }}/{{ p2p.a_port }}--{{ p2p.b_device }}/{{ p2p.b_port }}{% if not loop.last %} {% endif %}{% endfor %}"
    run_once: true
 
-# Need to work on getting links as a list using xcon_links
  - name: run xconnect containers
    docker_container:
      name: "peer-2-peer"

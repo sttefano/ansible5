@@ -1,0 +1,35 @@
+---
+
+## Ejemplo de uso:
+##      ansible-playbook -i inventory/mpls_lab/hosts master.yml
+
+ - name: Build Lab
+   hosts: all
+   gather_facts: no
+   connection: local
+
+   tasks:
+
+    - name: Fire up docker images
+      import_role:
+       name: start_devices
+      delegate_to: 127.0.0.1
+
+    - name: Obtain Docker Container IP Addresses
+      import_role:
+       name: obtain_docker_ips
+      delegate_to: 127.0.0.1
+
+    - name: Build Configs
+      import_role:
+       name: template_configs
+      delegate_to: 127.0.0.1
+
+      #- name: Configure Devices
+      #import_role:
+      #name: configure_devices
+      
+    - name: GIT version controls
+      import_role:
+       name: version_controls
+      
