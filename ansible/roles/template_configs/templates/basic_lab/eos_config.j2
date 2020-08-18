@@ -1,0 +1,10 @@
+{% set common = "snippets/common/arista" %}
+{% set lab_snippets = "snippets/"+lab_id+"/arista" %}
+!
+{% include common+'/eos_hostname.j2' %}
+!
+{% include common+'/eos_lldp_run.j2' %}
+!
+{% include lab_snippets+'/eos_layer3_interfaces.j2' %}
+!
+

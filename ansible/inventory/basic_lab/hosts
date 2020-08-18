@@ -1,0 +1,15 @@
+[veos]
+veos1
+veos2
+veos3
+veos4
+
+[all:vars]
+lab_id=basic_lab
+ansible_network_os=eos
+ansible_connection=network_cli
+ansible_become=yes
+ansible_become_method=enable
+ansible_user=vrnetlab
+ansible_ssh_pass=VR-netlab9
+

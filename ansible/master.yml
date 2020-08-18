@@ -29,7 +29,7 @@
       #import_role:
       #name: configure_devices
       
-    - name: GIT version controls
-      import_role:
-       name: version_controls
+      #- name: GIT version controls
+      #import_role:
+      #name: version_controls
       

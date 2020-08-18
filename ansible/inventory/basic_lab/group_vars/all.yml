@@ -1,0 +1,21 @@
+---
+platform: "veos"
+version: "4.20.15M"
+docker_image: "vrnetlab/vr-{{ platform }}:{{ version }}"
+
+output_dir: "output/{{ lab_id }}"
+
+xcon:
+ links:
+  - veos1
+  - veos2
+  - veos3
+  - veos4
+  
+ p2p:
+# En los eos la interface 1 pertenece a MGMT, entonces port2 = Ethernet1, Port3 = Eternet2, y asi sucecivamente
+  - { a_device: 'veos1', a_port: '2', b_device: 'veos2', b_port: '2' }
+  - { a_device: 'veos1', a_port: '3', b_device: 'veos3', b_port: '3' }
+  - { a_device: 'veos2', a_port: '3', b_device: 'veos4', b_port: '3' }
+  - { a_device: 'veos3', a_port: '2', b_device: 'veos4', b_port: '2' }
+  

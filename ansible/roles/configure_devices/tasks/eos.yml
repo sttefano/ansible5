@@ -1,0 +1,6 @@
+---
+ - name: Configure device - Arista
+   eos_config:
+    src: "{{ output_dir }}/{{ inventory_hostname }}.cfg"
+    match: none
+

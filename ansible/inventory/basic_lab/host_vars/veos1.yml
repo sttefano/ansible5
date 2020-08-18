@@ -1,0 +1,5 @@
+---
+layer3_interfaces:
+ - { interface: 'Ethernet1', ip_address: '10.1.0.1/30', description: 'To veos2' }
+ - { interface: 'Ethernet2', ip_address: '10.2.0.1/30', description: 'To veos3' }
+ 
